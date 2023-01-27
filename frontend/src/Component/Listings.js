@@ -129,7 +129,8 @@ function Listings() {
   const [allListings, setAllListings] = useState([]);
   const [dataIsLoading, setDataIsLoading] = useState(true);
 
-  useEffect(() => {
+
+  const handler = () => {
     const source = Axios.CancelToken.source();
     async function GetAllListings() {
       try {
@@ -148,7 +149,8 @@ function Listings() {
     return () => {
       source.cancel();
     };
-  }, []);
+  };
+  useEffect( ()=> handler(), []);
 
   if (dataIsLoading === false) {
     console.log(allListings[0].location);
